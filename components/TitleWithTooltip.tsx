@@ -10,7 +10,7 @@ type Props = {
 
 const TitleWithTooltip = ({titleText, tooltipText}: Props) => {
   return (
-		<div style={{display: 'flex', alignItems: 'center'}}>
+		<div style={{display: 'flex', alignItems: 'center', marginBottom: '5px'}}>
 			<h3 style={{paddingRight: "10px"}}>{titleText}</h3>
 			<Tooltip style={{fontSize:"16px", color: '#EBEBEB', backgroundColor: "black", borderRadius: '10px'}} placement="top" title={tooltipText}>
 				<HelpIcon />

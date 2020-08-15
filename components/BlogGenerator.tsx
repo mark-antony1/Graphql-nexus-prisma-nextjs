@@ -11,8 +11,11 @@ const ColorButton = withStyles(() => ({
 		borderRadius:'20px',
 		fontSize: '36px',
 		padding: '0px',
+		marginLeft: '10px',
+		boxShadow: 'none',
 		'&:hover': {
-      backgroundColor: "#FFD5D5",
+			backgroundColor: "#FFD5D5",
+			boxShadow: 'none',
     },
   },
 }))(Button);
@@ -22,9 +25,9 @@ const BlogGenerator: React.FC = () => {
 		<div style={{padding: '0 5vw 0 5vw'}}>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <div>
-					<TitleWithTooltip titleText='New Blog Title' tooltipText='Help'/>
+					<TitleWithTooltip titleText='New Blog Title' tooltipText='Input the title for the blog post you want to create'/>
           <input></input>
-					<TitleWithTooltip titleText='Blog Example' tooltipText='Help'/>
+					<TitleWithTooltip titleText='Blog Example' tooltipText='Input the title for the sample blog post'/>
           <div>Blog Example Title</div>
           <input></input>
           <div>Blog Example Text</div>
@@ -35,7 +38,7 @@ const BlogGenerator: React.FC = () => {
           <textarea style={{width: '40vw', height: '40vh'}}></textarea>
         </div>
         <div>
-					<TitleWithTooltip titleText='Blog Output' tooltipText='Help'/>
+					<TitleWithTooltip titleText='Blog Output' tooltipText='this is the generated text for the blog you are creating'/>
           <textarea style={{width: '45vw', height: '60vh'}}></textarea>
         </div>
       </div>
@@ -46,17 +49,14 @@ const BlogGenerator: React.FC = () => {
 						Generate
 					</Button>
         </div>
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
           <div>Will you use this draft?</div>
 					<ColorButton variant="contained" color="primary">
 						👍
 					</ColorButton>
-					<button className="unselected-draft-btn" id="male" name="gender" value="male">
-						👍
-					</button>
-					<button className='unselected-draft-btn' id="female" name="gender" value="female">
+					<ColorButton variant="contained" color="primary">
 						👎
-					</button>
+					</ColorButton>
         </div>
       </div>
     </div>

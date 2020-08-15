@@ -44,7 +44,6 @@ h3 {
 	font-weight: normal;
 	font-size: 24px;
 	line-height: 28px;
-	margin-bottom: 5px;
 }
 
 .pro-tip {
@@ -79,7 +78,7 @@ h3 {
 	border: 1px solid #797979;
 	box-sizing: border-box;
 	border-radius: 20px;
-	font-size: 36px;
+	font-size: 32px;
 	margin-left: 10px;
 }
 
@@ -93,16 +92,6 @@ h3 {
 	border: 1px solid #797979;
 	box-sizing: border-box;
 	border-radius: 20px;
-	font-size: 36px;
+	font-size: 32px;
 	margin-left: 10px;
-}
-
-/* button:focus{
-  outline: none;
-  box-shadow: none;
-} */
-
-button{
-	box-shadow: none;
-	border: none;
 }
