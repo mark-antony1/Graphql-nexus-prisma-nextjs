@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'GTZirkon';
-	src: url('GTZirkon-Medium.eot');
-	src: url('GTZirkon-Medium.eot?#iefix') format('embedded-opentype'), url('GTZirkon-Medium.woff2') format('woff2'), url('GTZirkon-Medium.woff') format('woff');
+	src: url('GTZirkon-Light.eot');
+	src: url('GTZirkon-Light.eot?#iefix') format('embedded-opentype'), url('GTZirkon-Light.woff2') format('woff2'), url('GTZirkon-Light.woff') format('woff');
 	font-weight: 900;
 	font-style: normal;
 }

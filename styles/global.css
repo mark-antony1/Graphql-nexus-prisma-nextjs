@@ -27,11 +27,13 @@ img {
 }
 
 textarea {
+	font-family: Roboto;
 	resize: none;
 	font-size: 12px;
 }
 
 input {
+	font-family: Roboto;
 	background: #FFFFFF;
 	border: 1px solid #545454;
 	box-sizing: border-box;

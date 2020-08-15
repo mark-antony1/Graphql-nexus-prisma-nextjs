@@ -16,7 +16,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"></link>
     </Head>
     <header style={{padding: '0 5vw 0 5vw', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-      <h1 style={{fontFamily: 'Zirkon'}}>goodcontent.ai</h1>
+      <h1>goodcontent.ai</h1>
       <nav>
         {/* <Link href="/">
           <a>Home</a>
