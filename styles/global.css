@@ -1,0 +1,108 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, Roboto, BlinkMacSystemFont, Segoe UI, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+textarea {
+	resize: none;
+}
+
+input {
+	background: #FFFFFF;
+	border: 1px solid #545454;
+	box-sizing: border-box;
+	border-radius: 5px;
+	width: 40vw;
+}
+
+h3 {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	margin-bottom: 5px;
+}
+
+.pro-tip {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 14px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+.generate-button {
+	width: 262px;
+	height: 58px;
+	left: 73px;
+	top: 784px;
+
+	background: #BBE9FF;
+	border-radius: 10px;
+	font-size: 24px;
+	line-height: 28px;
+}
+
+.unselected-draft-btn {
+	width: 52px;
+	height: 47px;
+	left: 1230px;
+	top: 759px;
+
+	background: #CDFFDB;
+	border: 1px solid #797979;
+	box-sizing: border-box;
+	border-radius: 20px;
+	font-size: 36px;
+	margin-left: 10px;
+}
+
+.selected-draft-btn {
+	width: 52px;
+	height: 47px;
+	left: 1230px;
+	top: 759px;
+
+	background: #CDFFDB;
+	border: 1px solid #797979;
+	box-sizing: border-box;
+	border-radius: 20px;
+	font-size: 36px;
+	margin-left: 10px;
+}
+
+/* button:focus{
+  outline: none;
+  box-shadow: none;
+} */
+
+button{
+	box-shadow: none;
+	border: none;
+}
