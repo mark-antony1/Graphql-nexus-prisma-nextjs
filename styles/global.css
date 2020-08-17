@@ -101,3 +101,9 @@ h3 {
 	font-size: 32px;
 	margin-left: 10px;
 }
+
+nav {
+	min-width: 13vw;
+	display: flex;
+	justify-content: space-between;
+}

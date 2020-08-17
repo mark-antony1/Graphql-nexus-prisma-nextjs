@@ -18,15 +18,15 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
     <header style={{padding: '0 5vw 0 5vw', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
       <h1>goodcontent.ai</h1>
       <nav>
-        {/* <Link href="/">
+        <Link href="https://goodcontent.ai/">
           <a>Home</a>
         </Link>{' '}
-        <Link href="/App">
+        <Link href="https://www.goodcontent.ai/blog">
+          <a>Blog</a>
+        </Link>{' '}
+        <Link href="/">
           <a>App</a>
         </Link>{' '}
-        <Link href="/blog">
-          <a>Blog</a>
-        </Link>{' '} */}
       </nav>
     </header>
     {children}

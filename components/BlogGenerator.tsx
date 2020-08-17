@@ -18,7 +18,7 @@ const BlogGenerator: React.FC = () => {
 		setTimeout(() => {
 			setGeneratedBlogText(generatedBlogTextFinal)
 			setIsLoadingBlog(false)
-		}, 3000)
+		}, 500)
 	}
 
 	const getNumOfWords = () => {
