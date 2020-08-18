@@ -64,7 +64,6 @@ schema.mutationType({
 						password: bcrypt.hashSync(password, salt),
 					},
 				});
-				console.log("asdfasdf", validatePassword(user.password, password), "asd", password, user.password)
 				const token = jwt.sign(
 					{ email: user.email, id: user.id, time: new Date() },
 					process.env.ENV_LOCAL_JWT_SECRET,
@@ -102,7 +101,6 @@ schema.mutationType({
 						email: email
 					}
 				});
-				console.log(process.env)
 				if (user && validatePassword(user, password)) {
 					const token = jwt.sign(
 						{ email: user.email, id: user.id, time: new Date() },
