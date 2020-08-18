@@ -5,6 +5,10 @@ import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import cookie from "cookie"
 
+function validatePassword(user, password) {
+  return bcrypt.compareSync(password, user.password);
+}
+
 schema.objectType({
   name: "user",
   definition(t) {
@@ -48,21 +52,22 @@ schema.mutationType({
 				first_name: stringArg({ nullable: false}),
 				last_name: stringArg({ nullable: false})
 			},
-
 			async resolve(_parent, _args, ctx) {
+				const { first_name, last_name, password, email } = _args
 				const salt = bcrypt.genSaltSync();
 
 				const user = await ctx.db.user.create({
 					data: {
-						email: _args.email,
-						first_name: _args.first_name,
-						last_name: _args.last_name,
-						password: bcrypt.hashSync(_args.password, salt),
+						email: email,
+						first_name: first_name,
+						last_name: last_name,
+						password: bcrypt.hashSync(password, salt),
 					},
 				});
+				console.log("asdfasdf", validatePassword(user.password, password), "asd", password, user.password)
 				const token = jwt.sign(
 					{ email: user.email, id: user.id, time: new Date() },
-					process.env.JWT_SECRET,
+					process.env.ENV_LOCAL_JWT_SECRET,
 					{
 						expiresIn: "6h",
 					}
@@ -82,7 +87,47 @@ schema.mutationType({
 				return user;
 			}
 		})
-		t.crud.createOneuser();
+		t.field("login", {
+			type: "user",
+			args: {
+				email: stringArg({ nullable: false }),
+				password: stringArg({ nullable: false }),
+			},
+			async resolve(_parent, _args, ctx) {
+				const { email, password } = _args
+				const salt = bcrypt.genSaltSync();
+
+				const user = await ctx.db.user.findOne({
+					where: {
+						email: email
+					}
+				});
+				console.log(process.env)
+				if (user && validatePassword(user, password)) {
+					const token = jwt.sign(
+						{ email: user.email, id: user.id, time: new Date() },
+						process.env.ENV_LOCAL_JWT_SECRET,
+						{
+							expiresIn: "6h",
+						}
+					);
+	
+					ctx.res.setHeader(
+						"Set-Cookie",
+						cookie.serialize("token", token, {
+							httpOnly: true,
+							maxAge: 6 * 60 * 60,
+							path: "/",
+							sameSite: "lax",
+							secure: process.env.NODE_ENV === "production",
+						})
+					);
+	
+					return user;
+				}
+				throw new Error("Invalid email and password combination");
+    	}
+		})
     t.crud.deleteOneuser();
     t.crud.deleteManyuser();
     t.crud.updateOneuser();

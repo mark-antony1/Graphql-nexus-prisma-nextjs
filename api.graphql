@@ -24,11 +24,6 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
-input documentCreateOneWithoutUserInput {
-  connect: documentWhereUniqueInput
-  create: documentCreateWithoutUserInput
-}
-
 input documentCreateWithoutUserInput {
   created_at: DateTime
   generated_blog_text: String!
@@ -96,9 +91,9 @@ scalar Json
 
 type Mutation {
   bigRedButton: String
-  createOneuser(data: userCreateInput!): user!
   deleteManyuser(where: userWhereInput): BatchPayload!
   deleteOneuser(where: userWhereUniqueInput!): user
+  login(email: String!, password: String!): user
   signup(email: String!, first_name: String!, last_name: String!, password: String!): user
   updateManyuser(data: userUpdateManyMutationInput!, where: userWhereInput): BatchPayload!
   updateOneuser(data: userUpdateInput!, where: userWhereUniqueInput!): user
@@ -132,16 +127,6 @@ type user {
   last_name: String!
   password: String!
   updated_at: DateTime!
-}
-
-input userCreateInput {
-  created_at: DateTime
-  document: documentCreateOneWithoutUserInput
-  email: String!
-  first_name: String!
-  last_name: String!
-  password: String!
-  updated_at: DateTime
 }
 
 input userUpdateInput {
