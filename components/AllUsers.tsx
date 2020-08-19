@@ -11,6 +11,7 @@ const AllUsersQuery = gql`
   }
 `;
 
+
 type AllUsersData = {
   allUsers: {
     id: string;

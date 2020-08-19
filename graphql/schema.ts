@@ -13,8 +13,8 @@ schema.objectType({
   name: "user",
   definition(t) {
     t.model.id();
-		t.model.first_name();
-		t.model.last_name();
+		t.model.firstName();
+		t.model.lastName();
 		t.model.email();
 		t.model.password();
 		t.model.created_at();
@@ -49,18 +49,25 @@ schema.mutationType({
 			args: {
 				email: stringArg({ nullable: false }),
 				password: stringArg({ nullable: false }),
-				first_name: stringArg({ nullable: false}),
-				last_name: stringArg({ nullable: false})
+				firstName: stringArg({ nullable: false}),
+				lastName: stringArg({ nullable: false}),
+				inviteCode: stringArg({ nullable: false})
 			},
 			async resolve(_parent, _args, ctx) {
-				const { first_name, last_name, password, email } = _args
-				const salt = bcrypt.genSaltSync();
+				const { firstName, lastName, password, email, inviteCode } = _args
+
+
+
+				if (inviteCode !== process.env.ENV_LOCAL_INVITE_SECRET) {
+					throw Error("Invalid invite code")
+				}
+				const salt =bcrypt.genSaltSync();
 
 				const user = await ctx.db.user.create({
 					data: {
 						email: email,
-						first_name: first_name,
-						last_name: last_name,
+						first_name: firstName,
+						last_name: lastName,
 						password: bcrypt.hashSync(password, salt),
 					},
 				});
@@ -125,6 +132,22 @@ schema.mutationType({
 				}
 				throw new Error("Invalid email and password combination");
     	}
+		})
+		t.field("validateUser", {
+			type: "String",
+			args: {},
+			async resolve(_parent, _args, ctx) {
+				const { token } = cookie.parse(ctx.req.headers.cookie ?? "");
+				if (token) {
+					try {
+						jwt.verify(token, process.env.ENV_LOCAL_JWT_SECRET);
+						return "ok"
+    			} catch {
+						throw new Error("Invalid email and password combination");
+					}
+				}
+				throw new Error("Invalid email and password combination");
+			}
 		})
     t.crud.deleteOneuser();
     t.crud.deleteManyuser();
