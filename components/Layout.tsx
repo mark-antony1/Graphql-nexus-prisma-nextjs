@@ -30,7 +30,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       </nav>
     </header>
     {children}
-    <footer style={{justifyContent: 'center', display:'flex', padding: '5vh 0 5vh', fontSize: '12px'}}>
+    <footer style={{backgroundColor: '#FBF8F3', justifyContent: 'center', display:'flex', padding: '5vh 0 5vh', fontSize: '12px'}}>
       <span>Looking for something else? Get in touch at human@goodcontent.ai 👋</span>
     </footer>
   </div>
