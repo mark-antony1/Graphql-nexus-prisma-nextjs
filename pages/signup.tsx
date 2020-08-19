@@ -1,4 +1,5 @@
 import Layout from '../components/Layout'
+import Link from 'next/link'
 import Button from '@material-ui/core/Button';
 import React, { useState} from "react";
 import FormInputField from '../components/FormInputField'
@@ -48,6 +49,9 @@ const AboutPage = () => {
 			<div className='card-container'>
 				<div className='card'>
 					<h1>Sign Up</h1>
+					<Link href="/login">
+						<a>Already a user?</a>
+					</Link>
 					<FormInputField label={'First Name*'} value={formFields.firstName} 
 						onChange={(e) => updateFormFields(e.target.value, 'firstName')}/>
 					<FormInputField label={'Last Name*'} value={formFields.lastName} 
