@@ -4,7 +4,7 @@ import AllUsers from "../components/AllUsers";
 import BlogGenerator from "../components/BlogGenerator";
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+  <Layout title="App | Goodcontent.ai">
     <BlogGenerator/>
   </Layout>
 )

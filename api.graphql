@@ -94,15 +94,14 @@ type Mutation {
   deleteManyuser(where: userWhereInput): BatchPayload!
   deleteOneuser(where: userWhereUniqueInput!): user
   login(email: String!, password: String!): user
-  signup(email: String!, firstName: String!, inviteCode: String!, lastName: String!, password: String!): user
+  signup(email: String!, first_name: String!, inviteCode: String!, last_name: String!, password: String!): user
   updateManyuser(data: userUpdateManyMutationInput!, where: userWhereInput): BatchPayload!
   updateOneuser(data: userUpdateInput!, where: userWhereUniqueInput!): user
-  validateUser: String
 }
 
 type Query {
   allUsers: [user!]
-  user(where: userWhereUniqueInput!): user
+  user(token: String!): user
   users(after: userWhereUniqueInput, before: userWhereUniqueInput, first: Int, last: Int): [user!]!
 }
 
@@ -123,7 +122,9 @@ input StringFilter {
 type user {
   created_at: DateTime!
   email: String!
+  first_name: String!
   id: Int!
+  last_name: String!
   password: String!
   updated_at: DateTime!
 }

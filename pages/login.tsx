@@ -7,22 +7,20 @@ import { useMutation } from "urql";
 import gql from "graphql-tag";
 import { useRouter } from 'next/router'
 
-const SignUp = gql`
-  mutation ($firstName: String!, $lastName: String!, $email: String!, $password: String!, $inviteCode: String!)  {
-    signup(first_name: $firstName, last_name: $lastName, email: $email, password: $password, inviteCode: $inviteCode ) {
+const Login = gql`
+  mutation ($email: String!, $password: String!)  {
+    login(email: $email, password: $password) {
 			id
+			first_name
     }
 	}`;
 	
-const SignUpPage = () => {
+const LoginPage = () => {
 	const router = useRouter()
-	const [signUpResult, signUp] = useMutation(SignUp);
+	const [loginResult, login] = useMutation(Login);
 	const [formFields, setFormFields] = useState({
-		firstName: "",
-		lastName: "",
 		email: "",
 		password: "",
-		inviteCode: ""
 	})
 	const [errorText, setErrorText] = useState("")
 
@@ -33,12 +31,12 @@ const SignUpPage = () => {
 	}
 
 	const handleSubmit = () => {
-		signUp(formFields)
+		login(formFields)
 		.then(res => {
 			if (res.error && res.error.message){
 				const message = res.error.message
-				if (message.includes("Invalid invite code")){
-					setErrorText("Invalid Invite Code Please Try Another Code")
+				if (message.includes("Invalid email and passwo")){
+					setErrorText("Invalid email and password combination")
 				} else if (message.includes("ique constraint failed on the fields: (`email")){
 					setErrorText("That email has already been used")
 				} else {
@@ -51,25 +49,19 @@ const SignUpPage = () => {
 	}
 
   return(
-		<Layout title="Signup | Goodcontent.ai">
+		<Layout title="Login | Goodcontent.ai">
 			<div className='card-container'>
 				<div className='card'>
-					<h1>Sign Up</h1>
-					<Link href="/login">
-						<a>Already a user?</a>
+					<h1>Log In</h1>
+					<Link href="/signup">
+						<a>Need to sign up?</a>
 					</Link>
-					<FormInputField label={'First Name*'} value={formFields.firstName} 
-						onChange={(e) => updateFormFields(e.target.value, 'firstName')}/>
-					<FormInputField label={'Last Name*'} value={formFields.lastName} 
-						onChange={(e) => updateFormFields(e.target.value, 'lastName')}/>
 					<FormInputField label={'Email*'} value={formFields.email} 
 						onChange={(e) => updateFormFields(e.target.value, 'email')}/>
 					<FormInputField label={'Password*'} value={formFields.password} 
 						onChange={(e) => updateFormFields(e.target.value, 'password')}/>
-					<FormInputField label={'Invite Code*'} value={formFields.inviteCode} 
-						onChange={(e) => updateFormFields(e.target.value, 'inviteCode')}/>
 					<Button style={{minWidth: '120px', minHeight: "39px"}} onClick={handleSubmit} disableElevation variant="contained" color="primary">
-						Sign Up
+						Log In
 					</Button>
 					<p style={{color: 'red', fontWeight: 'bold'}}>{errorText}</p>
 				</div>
@@ -78,4 +70,4 @@ const SignUpPage = () => {
 	)
 }
 
-export default SignUpPage
+export default LoginPage

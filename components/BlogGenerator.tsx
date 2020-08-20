@@ -1,11 +1,44 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import TitleWithTooltip from './TitleWithTooltip'
 import Button from '@material-ui/core/Button';
 import BlogLikeButtons from './BlogLikeButtons'
 import CircularProgress from '@material-ui/core/CircularProgress';
-import axios from 'axios'
+import gql from "graphql-tag";
+import { useRouter } from 'next/router'
+import { useQuery } from "urql";
+
+const UserQuery = gql`
+  query($token: String!) {
+    user(token: $token) {
+      id
+      first_name
+    }
+  }
+`;
+
+
+type UserQueryData = {
+  user: {
+    id: string;
+    first_name: string;
+  };
+};
+
 
 const BlogGenerator: React.FC = () => {
+	if (typeof window !== 'undefined') {
+		const router = useRouter()
+		const [userQueryResult] = useQuery({
+			query: UserQuery,
+			variables: {token: "localStorage.getItem('token')"}
+		})
+		if(userQueryResult.error !== undefined) {
+			router.push('/login')
+		}
+	}
+
+
+
 	const [blogTitleText, setBlogTitleText] = useState("")
 	const [exampleBlogTitleText, setExampleBlogTitleText] = useState("")
 	const [exampleBlogText, setExampleBlogText] = useState("")
