@@ -5,7 +5,12 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "type-check": "tsc",
+    "migrate:save": "prisma migrate save --experimental",
+    "migrate:up": "prisma migrate up --experimental",
+    "migrate": "yarn migrate:save && yarn migrate:up",
+    "postinstall": "prisma generate",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
