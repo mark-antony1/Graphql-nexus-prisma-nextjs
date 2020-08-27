@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-
+.env
+dev.db
+prisma/dev.db
+prisma/migrations
 # testing
 /coverage
 
