@@ -11,6 +11,20 @@ yarn
 yarn dev
 ```
 
-### Backend functions
+## Backend functions
 
 TODO: describe API endpoints + parameters
+
+## Database migrations
+
+Make a change in `prisma/schema.prisma` then save it
+
+```bash
+yarn migrate:save
+```
+
+then apply the migration to the db
+
+```bash
+yarn migrate:up
+```
